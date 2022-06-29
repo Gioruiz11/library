@@ -13,21 +13,54 @@ function Book(title, author, pages, haveRead){
 
 
 function addBookToLibrary(){
-    // TODO: when new book button is pressed, show input screen to input information,
-    // save information and make new book with it. 
+    let title = document.getElementById("title").value;
+    let author = document.getElementById("author").value;
+    let pages = document.getElementById("pages").value;
+    let haveRead = document.getElementById("haveread").value;
     let epicBook = new Book(title, author, pages, haveRead);
     myLibrary.push(epicBook);
 }
 
 function printBooks(){
-    let result = ""
-    for(let book of myLibrary) {
-        result += book.info() + ", ";
-    }
-    alert(result)
+    let div = document.getElementsByClassName("bookarea")[0];
+    let newBook = document.createElement("div");
+    newBook.classList.add("book");
+    let title = document.createElement("p");
+
+    //let result = ""
+    //for(let book of myLibrary) {
+     //   result += book.info() + " | ";
+   // }
+   // alert(result)
 }
 
 
-addBookToLibrary();
-addBookToLibrary();
-printBooks();
+
+// modal work
+let modal = document.getElementsByClassName("modal")[0];
+let btn = document.getElementById("btn");
+let span = document.getElementsByClassName("close")[0];
+let submit = document.getElementById("submit");
+
+// open modal on button click
+btn.onclick = function(){
+    modal.style.display = "block";
+}
+
+submit.onclick = function(event){
+    event.preventDefault();
+    addBookToLibrary();
+    printBooks();
+}
+
+// close modal on (x) click
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if(event.target == modal){
+        modal.style.display = "none";
+    }
+}

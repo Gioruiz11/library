@@ -6,11 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="newbook">
-        <button type="button">New Book</button>
+        <button type="button" id="btn">New Book</button>
+        <div class="modal">
+            <div class="modal-content">
+              <form>
+                <span class="close">&times</span>
+                <label for="title">Book Title: </label>
+                <input type="text" id="title" name="title">
+                <label for="author">Author: </label>
+                <input type="text" id="author" name="author">
+                <label for="pages">Pages Read: </label>
+                <input type="number" id="pages" name="pages">
+                <label for="haveread">Have read: </label>
+                <input type="checkbox" id="haveread" name="haveread">
+                <button type="submit" id="submit">Submit</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <div class="bookarea">
+        <div class="book">
+            <p>title: harry potter</p>
+            <p>author: jk rowling</p>
+            <p>pages read: 520</p>
+            <p>have read: yes</p>
+        </div>
+        
     </div>
 </body>
 </html>
