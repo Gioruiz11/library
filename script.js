@@ -36,8 +36,18 @@ function printBooks(index){
     let authorText = document.createTextNode("author: " + myLibrary[index].author);
     let pages = document.createElement("p");
     let pagesText = document.createTextNode("Number of pages: " + myLibrary[index].pages);
+
+    // Add have read checkbox
     let read = document.createElement("p");
-    let readText = document.createTextNode("have read: " + myLibrary[index].haveRead);
+    let readInput = document.createElement("input");
+    readInput.setAttribute("type", "checkbox");
+
+    if(myLibrary[index].haveRead == true){
+        readInput.setAttribute("checked", "");
+    }
+    let readText = document.createTextNode("have read: ");
+
+    // add remove button
     let remove = document.createElement("button");
     remove.innerHTML = "Remove";
     remove.id = "remove";
@@ -51,6 +61,7 @@ function printBooks(index){
     pages.appendChild(pagesText);
     newBook.appendChild(pages);
     read.appendChild(readText);
+    read.appendChild(readInput);
     newBook.appendChild(read);
     newBook.appendChild(remove);
 
