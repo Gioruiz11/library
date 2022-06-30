@@ -11,27 +11,58 @@ function Book(title, author, pages, haveRead){
     }
 }
 
-
+ // Book is created and added to myLibrary array
 function addBookToLibrary(){
     let title = document.getElementById("title").value;
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
-    let haveRead = document.getElementById("haveread").value;
+    let haveRead = document.getElementById("haveread").checked;
     let epicBook = new Book(title, author, pages, haveRead);
     myLibrary.push(epicBook);
 }
 
-function printBooks(){
+
+// Adds book to the page
+function printBooks(index){
+    // create one book
     let div = document.getElementsByClassName("bookarea")[0];
     let newBook = document.createElement("div");
-    newBook.classList.add("book");
-    let title = document.createElement("p");
+    newBook.classList.add(`book${index}`);
 
-    //let result = ""
-    //for(let book of myLibrary) {
-     //   result += book.info() + " | ";
-   // }
-   // alert(result)
+    // printed book information
+    let title = document.createElement("p");
+    let titleText = document.createTextNode("title: " + myLibrary[index].title);
+    let author = document.createElement("p");
+    let authorText = document.createTextNode("author: " + myLibrary[index].author);
+    let pages = document.createElement("p");
+    let pagesText = document.createTextNode("Number of pages: " + myLibrary[index].pages);
+    let read = document.createElement("p");
+    let readText = document.createTextNode("have read: " + myLibrary[index].haveRead);
+    let remove = document.createElement("button");
+    remove.innerHTML = "Remove";
+    remove.id = "remove";
+    
+
+    // adding to the DOM
+    title.appendChild(titleText);
+    newBook.appendChild(title);
+    author.appendChild(authorText);
+    newBook.appendChild(author);
+    pages.appendChild(pagesText);
+    newBook.appendChild(pages);
+    read.appendChild(readText);
+    newBook.appendChild(read);
+    newBook.appendChild(remove);
+
+    div.appendChild(newBook);
+
+    // remove book from DOM and library array
+    remove.addEventListener("click", () => {
+        myLibrary.splice(index,1);
+        let book = document.getElementsByClassName(`book${index}`)[0]
+        book.remove();
+    } )
+
 }
 
 
@@ -47,10 +78,13 @@ btn.onclick = function(){
     modal.style.display = "block";
 }
 
+// on submit click, add book to library and print it on page
+let index = 0;
 submit.onclick = function(event){
     event.preventDefault();
     addBookToLibrary();
-    printBooks();
+    printBooks(index);
+    index++;
 }
 
 // close modal on (x) click
